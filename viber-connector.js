@@ -87,6 +87,10 @@ var ViberEnabledConnector = (function() {
                 contentType: 'object',
             });
         }
+        logger.log({
+          level: 'debug',
+          message: 'Message processed: ' + msg.toMessage()
+        });
         this.handler([msg.toMessage()]);
         return this;
     }
