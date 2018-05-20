@@ -32,7 +32,7 @@ var ViberEnabledConnector = (function() {
         });
 
         this.viberBot.on(BotEvents.MESSAGE_RECEIVED, (message, response) => {
-            logger.debug("Message received", message, response);
+            console.log("Message received", message, response);
             self.processMessage(message, response);
         });
 
@@ -88,7 +88,7 @@ var ViberEnabledConnector = (function() {
                 contentType: 'object',
             });
         }
-        logger.debug('Message processed: ', msg.toMessage());
+        console.log('Message processed: ', msg.toMessage());
         this.handler([msg.toMessage()]);
         return this;
     }
