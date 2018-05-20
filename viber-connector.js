@@ -78,18 +78,16 @@ var ViberEnabledConnector = (function() {
             .timestamp(convertTimestamp(message.timestamp))
             .entities();
 
-        var rawMessage = JSON.parse(message);
-        if (rawMessage.type === 'text') {
+        if (message instanceof VTextMessage) {
             msg = msg.text(message.text);
-        } else if (rawMessage.type === 'picture'){
+        } else if (message instanceof VPictureMessage){
             msg.text(message.text || 'picture').addAttachment({
-                contentUrl: rawMessage.media,
-                contentType: 'image/jpeg',
-                name: 'viberimage.jpeg'
+                contentUrl: message.url,
+                contentType: 'image/jpeg'
             })
         } else {
             msg = msg.text(message.text || '[json]').addAttachment({
-                payload: rawMessage,
+                payload: message,
                 contentType: 'object',
             });
         }
